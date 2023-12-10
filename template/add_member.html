@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+     <form>
+          <h2>Membership Management Form</h2>
+
+          <!-- Name Section -->
+          <div class="form-row">
+               <div class="form-group col-md-6">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter your first name">
+               </div>
+               <div class="form-group col-md-6">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter your last name">
+               </div>
+          </div>
+
+          <!-- Address Section -->
+          <div class="form-group">
+               <label for="streetAddress">Street Address</label>
+               <input type="text" class="form-control" id="streetAddress" placeholder="Enter your street address">
+          </div>
+          <div class="form-group">
+               <label for="streetAddress2">Street Address Line 2</label>
+               <input type="text" class="form-control" id="streetAddress2"
+                    placeholder="Enter additional address information">
+          </div>
+          <div class="form-row">
+               <div class="form-group col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="Enter your city">
+               </div>
+               <div class="form-group col-md-4">
+                    <label for="state">State/Province</label>
+                    <input type="text" class="form-control" id="state" placeholder="Enter your state/province">
+               </div>
+               <div class="form-group col-md-2">
+                    <label for="zipCode">Zip Code</label>
+                    <input type="text" class="form-control" id="zipCode" placeholder="Enter your zip code">
+               </div>
+          </div>
+          <div class="form-group">
+               <label for="country">Country</label>
+               <input type="text" class="form-control" id="country" placeholder="Enter your country">
+          </div>
+
+          <!-- Contact Information Section -->
+          <div class="form-row">
+               <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+               </div>
+               <div class="form-group col-md-6">
+                    <label for="contactNumber">Contact Number</label>
+                    <input type="tel" class="form-control" id="contactNumber" placeholder="Enter your contact number">
+               </div>
+          </div>
+
+
+
+          <!-- Membership Type Section -->
+          <div class="form-group">
+               <label for="membershipType">Membership Type</label>
+               <select class="form-control" id="membershipType">
+                    <option value="basic">Basic</option>
+                    <option value="premium">Premium</option>
+                    <option value="gold">Gold</option>
+               </select>
+          </div>
+
+
+
+          <!-- Billing Address Section -->
+          <div class="form-group">
+               <label for="billingAddressCheckbox">Billing Address</label>
+
+               <div class="form-check col-md-3">
+                    <input class="form-check-input" type="checkbox" lass="form-check-label" for="checkbox1">
+                    <label class="form-check-label" for="checkbox2">I want to specify a different billing
+                         Address</label>
+               </div>
+
+               <div class="form-check col-md-3">
+                    <input class="form-check-input" type="checkbox" id="checkbox2" name="option2" value="Option 2">
+                    <label class="form-check-label" for="checkbox2">I want to specify a different billing
+                         Address</label>
+               </div>
+          </div>
+
+
+
+          <!-- Date of Signature Section -->
+          <div class="form-group">
+               <label for="dateOfSignature">Date of Signature</label>
+               <input type="date" class="form-control" id="dateOfSignature">
+          </div>
+
+          <!-- Emergency Contacts Section -->
+          <div class="form-row">
+               <div class="form-group col-md-6">
+                    <label for="emergencyContact1">Emergency Contact 1</label>
+                    <input type="text" class="form-control" id="emergencyContact1"
+                         placeholder="Enter emergency contact number">
+               </div>
+               <div class="form-group col-md-6">
+                    <label for="emergencyContact2">Emergency Contact 2</label>
+                    <input type="text" class="form-control" id="emergencyContact2"
+                         placeholder="Enter emergency contact number">
+               </div>
+          </div>
+
+          <!-- Service Category Section -->
+          <div class="form-group">
+               <h5>Service Category</h5>
+               <div class="form-row">
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label"> Construction and Installation</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label"> Maintenance and Cleaning</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label"> Repairs</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label"> Equipment Installation</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label"> Water Treatment</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label"> Renovation</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label"> Safety Measures</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label">Landscaping and Design</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label">Inspections</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label">Training and Certification</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label">Emergency Services</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox" value="">
+                         <label class="form-check-label">Consultation and Design</label>
+                    </div>
+               </div>
+
+          </div>
+
+          <!-- Subcategory Section -->
+          <div class="form-group">
+               <h5>Sub Category</h5>
+               <div class="form-row">
+                    <label class="col-md-3">Recreation and Leisure</label>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input " type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Entertainment</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Relaxation</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Socializing</label>
+                    </div>
+               </div>
+               <div class="form-row">
+                    <label class="col-md-3">Physical Health and Fitness</label>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input " type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Exercise</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Cardiovascular health</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Muscle toning and strength</label>
+                    </div>
+               </div>
+               <div class="form-row">
+                    <label class="col-md-3">Mental Health and Well-being</label>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input " type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Stress relief</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Mood enhancement</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Meditation</label>
+                    </div>
+               </div>
+               <div class="form-row">
+                    <label class="col-md-3">Family and Social Activities</label>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input " type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Family bonding</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Social gatherings</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Pool parties</label>
+                    </div>
+               </div>
+               <div class="form-row">
+                    <label class="col-md-3">Aesthetics and Property Value</label>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input " type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Landscaping</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Property value enhancement</label>
+                    </div>
+                    <div class="form-check col-md-3">
+                         <input class="form-check-input" type="checkbox">
+                         <label class="form-check-label" for="checkbox1">Visual appeal</label>
+                    </div>
+               </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+     </form>
+</div>
+
+{% endblock content %}
