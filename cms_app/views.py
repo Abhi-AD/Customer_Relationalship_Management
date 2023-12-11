@@ -7,3 +7,6 @@ class HomeView(TemplateView):
     
 class AddMember(TemplateView):
     template_name = "add_member.html"
+    
+class Plan(TemplateView):
+    template_name = "plan.html"
