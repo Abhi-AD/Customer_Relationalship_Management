@@ -6,7 +6,7 @@
      </button>
      <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
-               <li class="nav-item active">
+               <li class="nav-item ">
                     <a class="nav-link" href="{% url 'home'%}">Home</a>
                </li>
                <li class="nav-item">
@@ -17,6 +17,15 @@
                </li>
                <li class="nav-item">
                     <a class="nav-link" href="{% url 'add_member' %}">Add member</a>
+               </li>
+               <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signin' %}"> sign In</a>
+               </li>
+               <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'login' %}">Login </a>
+               </li>
+               <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'home' %}"> LogOut</a>
                </li>
                <!-- Add more menu items as needed -->
           </ul>

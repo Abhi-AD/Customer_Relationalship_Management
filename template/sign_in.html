@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- sign in form -->
+
+<div class="container mt-5">
+     <div class="row justify-content-center">
+          <div class="col-md-6">
+
+               <form>
+                    <!-- First Name -->
+                    <div class="form-group">
+                         <label for="firstName">First Name</label>
+                         <input type="text" class="form-control" id="firstName" placeholder="Enter your first name"
+                              required>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group">
+                         <label for="lastName">Last Name</label>
+                         <input type="text" class="form-control" id="lastName" placeholder="Enter your last name"
+                              required>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                         <label for="password">Password</label>
+                         <input type="password" class="form-control" id="password"
+                              placeholder="Enter your password" required>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                         <label for="confirmPassword">Confirm Password</label>
+                         <input type="password" class="form-control" id="confirmPassword"
+                              placeholder="Confirm your password" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                         <label for="email">Email</label>
+                         <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                              required>
+                    </div>
+
+                    <!-- Profile Picture -->
+                    <div class="form-group">
+                         <label for="profilePicture">Profile Picture</label>
+                         <input type="file" class="form-control-file" id="profilePicture">
+                    </div>
+
+                   
+
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+               </form>
+
+          </div>
+     </div>
+</div>
+
+
+
+{% endblock content %}
