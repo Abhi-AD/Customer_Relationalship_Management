@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,View
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from cms_app.models import *
 # Create your views here.
 
-
+class SubscriptionDetailView(TemplateView):
+    template_name = 'plan.html'
 
 class HomeView(TemplateView):
     template_name = "index.html"
@@ -21,6 +25,4 @@ class LogInView(TemplateView):
     
 class SignInView(TemplateView):
     template_name = "sign_in.html"
-    
-
     
