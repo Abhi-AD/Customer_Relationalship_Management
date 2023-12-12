@@ -7,8 +7,9 @@ from django.utils import timezone
 
 class Plan_Subscription(models.Model):
     name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.IntegerField()
     images = models.ImageField(upload_to="Price_subscription/%Y/%m/%d", blank=False)
+    message = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
@@ -114,3 +115,12 @@ class InventoryBalance(models.Model):
 
     def __str__(self):
         return f"{self.inventory} - {self.balance_date} - {self.quantity_on_hand} units"
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name

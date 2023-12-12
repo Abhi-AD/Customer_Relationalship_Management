@@ -9,7 +9,8 @@ from cms_app.models import (
     Attendance,
     CashTransaction,
     Inventory,
-    InventoryBalance,    
+    InventoryBalance,   
+    Contact, 
 )
 
 # from cms_app.models import  UserSubscription,Subscription,Price,Product
@@ -26,3 +27,4 @@ admin.site.register(Attendance)
 admin.site.register(CashTransaction)
 admin.site.register(Inventory)
 admin.site.register(InventoryBalance)
+admin.site.register(Contact)
