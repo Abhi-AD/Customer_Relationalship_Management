@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+     <div class="row justify-content-center">
+          <div class="col-md-11">
+               <h2 class="mb-4">Inventory Balance Form</h2>
+
+               <form>
+                    <div class="form-row">
+                         <div class="form-group col-md-6">
+                              <label for="product">Product Name</label>
+                              <input type="text" class="form-control" id="product" placeholder="Enter product name">
+                         </div>
+                         <div class="form-group col-md-6">
+                              <label for="quantity">Quantity</label>
+                              <input type="number" class="form-control" id="quantity" placeholder="Enter quantity">
+                         </div>
+                    </div>
+
+                    <div class="form-row">
+                         <div class="form-group col-md-6">
+                              <label for="unitPrice">Unit Price</label>
+                              <input type="text" class="form-control" id="unitPrice" placeholder="Enter unit price">
+                         </div>
+                         <div class="form-group col-md-6">
+                              <label for="totalPrice">Total Price</label>
+                              <input type="text" class="form-control" id="totalPrice" placeholder="Total price"
+                                   readonly>
+                         </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+               </form>
+          </div>
+          {% include "payment_navbar.html" %}
+     </div>
+</div>
+
+
+{% endblock content %}

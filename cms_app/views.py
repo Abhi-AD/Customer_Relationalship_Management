@@ -77,22 +77,15 @@ class AttendanceListView(ListView):
         return Attendance.objects.all()
 
 
+
+
+
 class CashTransactionListView(ListView):
     model = CashTransaction
     template_name = "cashtransaction_list.html"
     
     def get_queryser(self):
         return CashTransaction.objects.all()
-
-
-class CashTransactionCreateView(CreateView):
-    model = CashTransaction
-    form_class = CashTransactionForm
-    template_name = "cashtransaction_form.html"
-    success_url = "/success/"  # Redirect to success page after form submission
-
-
-
 
 
 
@@ -120,25 +113,12 @@ class CashTransactionCreateView(View):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class InventoryListView(ListView):
     model = Inventory
     template_name = "inventory_list.html"
+    
+    def get_queryset(self):
+        return Inventory.objects.all()
 
 
 class InventoryCreateView(CreateView):
@@ -151,6 +131,9 @@ class InventoryCreateView(CreateView):
 class InventoryBalanceListView(ListView):
     model = InventoryBalance
     template_name = "inventorybalance_list.html"
+    
+    def get_queryset(self):
+        return InventoryBalance.objects.all()
 
 
 class InventoryBalanceCreateView(CreateView):

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5">
      <div class="row justify-content-center">
-          <div class="col-md-6">
+          <div class="col-md-11">
                <div class="card">
                     <div class="card-header">
                          <h5 class="mb-0">Cash Transaction</h5>
@@ -40,7 +40,7 @@
                                    <label for="description">Description</label>
                                    <textarea class="form-control" id="description" name="description" rows="3"
                                         placeholder="Enter description">{{ form.description.value }}</textarea>
-                                        {{form.description.errors}}
+                                   {{form.description.errors}}
                               </div>
 
                               <button type="submit">Submit</button>
@@ -49,9 +49,7 @@
                     </div>
                </div>
           </div>
-          <div class="col-md-6 left">
-               {% include "payment_navbar.html" %}
-          </div>
+          {% include "payment_navbar.html" %}
      </div>
 </div>
 

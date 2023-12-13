@@ -22,6 +22,7 @@ urlpatterns = [
     path("subscription/", SubscriptionDetailView.as_view(), name="subscription_detail"),
     path("contact/", ContactView.as_view(), name="contact"),
     path("attendance/", AttendanceListView.as_view(), name="attendance"),
+ 
     path("cashtransaction_list/", CashTransactionListView.as_view(), name="cashtransaction_list"),
     path("cashtransaction_form/", CashTransactionCreateView.as_view(), name="cashtransaction_form"),
     path("inventory_list/", InventoryListView.as_view(), name="inventory_list"),

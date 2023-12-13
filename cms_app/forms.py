@@ -17,7 +17,7 @@ class CashTransactionForm(forms.ModelForm):
 class InventoryForm(forms.ModelForm):
     class Meta:
         model = Inventory
-        fields = ["name", "quantity", "unit_price"]
+        fields = ["name", "quantity", "unit_price","date"]
 
 
 class InventoryBalanceForm(forms.ModelForm):

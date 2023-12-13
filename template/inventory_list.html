@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-11">
+      <h2>Inventory History</h2>
+
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Date</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        {% for transaction in object_list %}
+        <tbody>
+          <!-- Sample data, replace it with your actual data from the database -->
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{transaction.name}}</td>
+            <td>{{transaction.quantity}}</td>
+            <td>{{transaction.date}}</td>
+            <td>{{transaction.unit_price}}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+
+      </table>
+    </div>
+    {% include "payment_navbar.html" %}
+  </div>
+</div>
+
+
+{% endblock content %}

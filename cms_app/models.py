@@ -112,15 +112,19 @@ class Inventory(models.Model):
     name = models.ForeignKey(DisplayProfile, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.name} - {self.quantity} units"
+        return f"{self.name}"
 
 
 class InventoryBalance(models.Model):
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
     balance_date = models.DateField(default=timezone.now)
     quantity_on_hand = models.PositiveIntegerField()
+    images = models.ImageField(upload_to="Inventory_balance/%Y/%m/%d", blank=False)
+    
+    
 
     def __str__(self):
         return f"{self.inventory} - {self.balance_date} - {self.quantity_on_hand} units"
