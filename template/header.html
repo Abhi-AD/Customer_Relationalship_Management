@@ -7,31 +7,31 @@
      <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
                <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'home'%}">Home</a>
+                    <a class="nav-link  {% if request.resolver_match.url_name == 'home' %} active{% endif %}" href="{% url 'home'%}">Home</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'contact' %}">Contacts</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'contact' %} active{% endif %}"href="{% url 'contact' %}">Contacts</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'plan' %}">Price</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'plan' %} active{% endif %}" href="{% url 'plan' %}">Price</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'attendance' %}">Attendance</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'attendance' %} active{% endif %}" href="{% url 'attendance' %}">Attendance</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'cashtransaction_form' %}">Payment</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'cashtransaction_form' %} active{% endif %}" href="{% url 'cashtransaction_form' %}">Payment</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_member' %}">Add member</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'add_member' %} active{% endif %}" href="{% url 'add_member' %}">Add member</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signin' %}"> sign In</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'signin' %} active{% endif %}" href="{% url 'signin' %}"> sign In</a>
                </li>
                <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'login' %}">Login </a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'login' %} active{% endif %}" href="{% url 'login' %}">Login </a>
                </li>
                <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'home' %}"> LogOut</a>
+                    <a class="nav-link "> LogOut</a>
                </li>
                <!-- Add more menu items as needed -->
           </ul>

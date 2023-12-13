@@ -4,50 +4,23 @@
 <div class="container mt-5">
      <div class="row justify-content-center">
           <div class="col-md-11">
-               <div class="card">
-                    <div class="card-header">
-                         <h5 class="mb-0">Cash Transaction</h5>
+               <h2>Create Cash Transaction</h2>
+               <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                         {{ field.label_tag }}
+                         {{ field }}
+                         {% if field.help_text %}
+                         <small class="form-text text-muted">{{ field.help_text }}</small>
+                         {% endif %}
+                         {% if field.errors %}
+                         <div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>
+                         {% endif %}
                     </div>
-                    <div class="card-body">
-                         <!-- Transaction Form -->
-                         <form method="post">
-                              {% csrf_token %}
-                              <!-- Name Input -->
-                              <div class="form-group">
-                                   <label for="name">Name</label>
-                                   <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Enter name">{{ form.name.errors }}
-                              </div>
-
-                              <!-- Amount Input -->
-                              <div class="form-group">
-                                   <label for="amount">Amount</label>
-                                   <input type="text" class="form-control" id="amount" name="amount"
-                                        placeholder="Enter amount">{{ form.amount.errors }}
-                              </div>
-
-                              <!-- Transaction Type -->
-                              <div class="form-group">
-                                   <label for="transactionType">Transaction Type</label>
-                                   <select class="form-control" id="transactionType" name="transactionType">
-                                        <option value="income">Income</option>
-                                        <option value="expense">Expense</option>
-                                   </select>
-                              </div>
-
-                              <!-- Description Input -->
-                              <div class="form-group">
-                                   <label for="description">Description</label>
-                                   <textarea class="form-control" id="description" name="description" rows="3"
-                                        placeholder="Enter description">{{ form.description.value }}</textarea>
-                                   {{form.description.errors}}
-                              </div>
-
-                              <button type="submit">Submit</button>
-                         </form>
-                         <!-- End Transaction Form -->
-                    </div>
-               </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+               </form>
           </div>
           {% include "payment_navbar.html" %}
      </div>

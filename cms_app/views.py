@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, View, ListView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 from django.db.models import Count
 from django.utils import timezone
@@ -89,27 +90,41 @@ class CashTransactionListView(ListView):
 
 
 
-class CashTransactionCreateView(View):
-    template_name = "cashtransaction_form.html"
+# class CashTransactionCreateView(View):
+#     template_name = "cashtransaction_form.html"
 
-    def get(self, request):
-        return render(request, self.template_name)
+#     def get(self, request):
+#         return render(request, self.template_name)
 
-    def post(self, request):
-        form = CashTransactionForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(
-                request, "Successfully submitted your query. We will transactions you soon "
-            )
-            return redirect("cashtransaction_form")
-        else:
-            messages.error(request, "Cannot transactions error. ")
-            return render(
-                request,
-                self.template_name,
-                {"form": form},
-            )
+#     def post(self, request):
+#         form = CashTransactionForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(
+#                 request, "Successfully submitted your query. We will transactions you soon "
+#             )
+#             return redirect("cashtransaction_form")
+#         else:
+#             messages.error(request, "Cannot transactions error. ")
+#             return render(
+#                 request,
+#                 self.template_name,
+#                 {"form": form},
+#             )
+
+
+
+class CashTransactionCreateView(CreateView):
+    model = CashTransaction
+    form_class = CashTransactionForm
+    template_name = 'cashtransaction_form.html'  # Specify the template you want to use
+    success_url = reverse_lazy('success_url_name')  # Specify the success URL after the form is submitted
+
+    def form_valid(self, form):
+        # You can customize the behavior after the form is successfully validated and saved.
+        # For example, you can add additional logic or set additional fields before saving.
+        return super().form_valid(form)
+
 
 
 
