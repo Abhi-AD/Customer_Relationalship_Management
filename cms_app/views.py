@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import TemplateView, View,ListView
+from django.views.generic import TemplateView, View, ListView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.contrib import messages
@@ -9,14 +9,18 @@ from django.utils import timezone
 from django.http import JsonResponse
 
 from cms_app.models import *
-from cms_app.forms import ContactForm
+from cms_app.forms import (
+    ContactForm,
+    CashTransactionForm,
+    InventoryForm,
+    InventoryBalanceForm,
+)
+
 # create the view
 
 
 class SubscriptionDetailView(TemplateView):
     template_name = "plan.html"
-
-
 
 
 class ContactView(View):
@@ -42,31 +46,8 @@ class ContactView(View):
             )
 
 
-
-
-
-
-
-
-
-
-
-
-
 class HomeView(TemplateView):
     template_name = "index.html"
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class AddMember(TemplateView):
@@ -75,18 +56,8 @@ class AddMember(TemplateView):
 
 class Plan(ListView):
     model = Plan_Subscription
-    template_name = 'plan.html'
-    context_object_name = 'plans'
-
-
-
-
-
-
-
-
-
-
+    template_name = "plan.html"
+    context_object_name = "plans"
 
 
 class LogInView(TemplateView):
@@ -95,3 +66,95 @@ class LogInView(TemplateView):
 
 class SignInView(TemplateView):
     template_name = "sign_in.html"
+
+
+class AttendanceListView(ListView):
+    model = Attendance
+    template_name = "attendance_list.html"  # Provide the template name where you'll display the attendance data
+    context_object_name = "attendance_list"  # Specify the variable name to use in the template for the queryset
+
+    def get_queryset(self):
+        return Attendance.objects.all()
+
+
+class CashTransactionListView(ListView):
+    model = CashTransaction
+    template_name = "cashtransaction_list.html"
+    
+    def get_queryser(self):
+        return CashTransaction.objects.all()
+
+
+class CashTransactionCreateView(CreateView):
+    model = CashTransaction
+    form_class = CashTransactionForm
+    template_name = "cashtransaction_form.html"
+    success_url = "/success/"  # Redirect to success page after form submission
+
+
+
+
+
+
+class CashTransactionCreateView(View):
+    template_name = "cashtransaction_form.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        form = CashTransactionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Successfully submitted your query. We will transactions you soon "
+            )
+            return redirect("cashtransaction_form")
+        else:
+            messages.error(request, "Cannot transactions error. ")
+            return render(
+                request,
+                self.template_name,
+                {"form": form},
+            )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class InventoryListView(ListView):
+    model = Inventory
+    template_name = "inventory_list.html"
+
+
+class InventoryCreateView(CreateView):
+    model = Inventory
+    form_class = InventoryForm
+    template_name = "inventory_form.html"
+    success_url = "/success/"  # Redirect to success page after form submission
+
+
+class InventoryBalanceListView(ListView):
+    model = InventoryBalance
+    template_name = "inventorybalance_list.html"
+
+
+class InventoryBalanceCreateView(CreateView):
+    model = InventoryBalance
+    form_class = InventoryBalanceForm
+    template_name = "inventorybalance_form.html"
+    success_url = "/success/"  # Redirect to success page after form submission

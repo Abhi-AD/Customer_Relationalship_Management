@@ -64,7 +64,7 @@ class DisplayProfile(models.Model):
     profile = models.OneToOneField(AddMember, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"DisplayProfile for {self.profile}"
+        return f"{self.profile}"
 
 
 class User_Subscription(models.Model):
@@ -79,9 +79,17 @@ class Attendance(models.Model):
     user = models.ForeignKey(DisplayProfile, on_delete=models.CASCADE)
     date = models.DateField()
     is_present = models.BooleanField(default=False)
+    attendance_count = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.user} - {self.date}"
+        return f"{self.user} - {self.date} {self.attendance_count}"
+    
+    def save(self, *args, **kwargs):
+        # If is_present is True, increment attendance_count
+        if self.is_present:
+            self.attendance_count += 1
+
+        super().save(*args, **kwargs)
 
 
 class CashTransaction(models.Model):
@@ -96,7 +104,8 @@ class CashTransaction(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return f"{self.transaction_type} - {self.amount}"
+        return f"{self.transaction_type} - {self.amount} {self.user}"
+
 
 
 class Inventory(models.Model):

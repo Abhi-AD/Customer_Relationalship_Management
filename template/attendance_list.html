@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+<!-- Attendance -->
+<div class="container mt-5">
+     <h2>Attendance Table</h2>
+     {% for attendance in attendance_list %}
+     <table class="table table-bordered">
+          <thead>
+               <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Count</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr>
+                    <th scope="row">1</th>
+                    <td>{{ attendance.user }}</td>
+                    <td><input type="checkbox">{{ attendance.is_present }}</td>
+                    <td>{{ attendance.attendance_count }}</td>
+               </tr>
+               <!-- Add more rows as needed -->
+          </tbody>
+     </table>
+     {% endfor %}
+
+</div>
+
+
+
+{% endblock content %}
