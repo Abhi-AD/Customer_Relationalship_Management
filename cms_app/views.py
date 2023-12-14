@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, View, ListView, CreateView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LogoutView, LoginView
 from django.views import View
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -15,6 +18,7 @@ from cms_app.forms import (
     CashTransactionForm,
     InventoryForm,
     InventoryBalanceForm,
+    RegistrationForm,
 )
 
 # create the view
@@ -51,8 +55,46 @@ class HomeView(TemplateView):
     template_name = "index.html"
 
 
-class AddMember(TemplateView):
-    template_name = "add_member.html"
+
+class AddMemberView(View):
+    template_name = 'add_member.html'
+    form_class = RegistrationForm
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["service_categorys"] = Service_Category.objects.all()
+        context["sub_categorys"] = Sub_Category.objects.all()
+        return context
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            return render(request, self.template_name, {'form': form})
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class Plan(ListView):
@@ -65,29 +107,45 @@ class LogInView(TemplateView):
     template_name = "log_in.html"
 
 
+class LogOutView(TemplateView):
+    template_name = "index.html"
+
+
 class SignInView(TemplateView):
     template_name = "sign_in.html"
 
 
 class AttendanceListView(ListView):
     model = Attendance
-    template_name = "attendance_list.html"  # Provide the template name where you'll display the attendance data
-    context_object_name = "attendance_list"  # Specify the variable name to use in the template for the queryset
+    template_name = "attendance_list.html"
+    context_object_name = "attendance_list"
 
     def get_queryset(self):
         return Attendance.objects.all()
 
 
-
-
-
 class CashTransactionListView(ListView):
     model = CashTransaction
     template_name = "cashtransaction_list.html"
-    
+
     def get_queryser(self):
         return CashTransaction.objects.all()
 
+
+class InventoryListView(ListView):
+    model = Inventory
+    template_name = "inventory_list.html"
+
+    def get_queryset(self):
+        return Inventory.objects.all()
+
+
+class InventoryBalanceListView(ListView):
+    model = InventoryBalance
+    template_name = "inventorybalance_list.html"
+
+    def get_queryset(self):
+        return InventoryBalance.objects.all()
 
 
 # class CashTransactionCreateView(View):
@@ -113,12 +171,13 @@ class CashTransactionListView(ListView):
 #             )
 
 
-
 class CashTransactionCreateView(CreateView):
     model = CashTransaction
     form_class = CashTransactionForm
-    template_name = 'cashtransaction_form.html'  # Specify the template you want to use
-    success_url = reverse_lazy('success_url_name')  # Specify the success URL after the form is submitted
+    template_name = "cashtransaction_form.html"  # Specify the template you want to use
+    success_url = reverse_lazy(
+        "success_url_name"
+    )  # Specify the success URL after the form is submitted
 
     def form_valid(self, form):
         # You can customize the behavior after the form is successfully validated and saved.
@@ -126,29 +185,11 @@ class CashTransactionCreateView(CreateView):
         return super().form_valid(form)
 
 
-
-
-class InventoryListView(ListView):
-    model = Inventory
-    template_name = "inventory_list.html"
-    
-    def get_queryset(self):
-        return Inventory.objects.all()
-
-
 class InventoryCreateView(CreateView):
     model = Inventory
     form_class = InventoryForm
     template_name = "inventory_form.html"
     success_url = "/success/"  # Redirect to success page after form submission
-
-
-class InventoryBalanceListView(ListView):
-    model = InventoryBalance
-    template_name = "inventorybalance_list.html"
-    
-    def get_queryset(self):
-        return InventoryBalance.objects.all()
 
 
 class InventoryBalanceCreateView(CreateView):

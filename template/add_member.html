@@ -3,7 +3,8 @@
 {% block content %}
 
 <div class="container mt-5">
-     <form>
+     <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
           <h2>Membership Management Form</h2>
           <!-- types of membership -->
           <div class="form-group">
@@ -18,62 +19,70 @@
           <div class="form-row">
                <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="Enter your first name">
+                    <input type="text" class="form-control" id="firstName"
+                         placeholder="Enter your first name">{{form.first_name.errors}}
                </div>
                <div class="form-group col-md-6">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="Enter your last name">
+                    <input type="text" class="form-control" id="lastName"
+                         placeholder="Enter your last name">{{form.last_name.errors}}
                </div>
+          </div>
+
+          <!-- profile add -->
+          <div class="form-group">
+               <label for="fileUpload">Images File</label>
+               <input type="file" class="form-control-file" id="fileUpload">{{form.images.errors}}
           </div>
 
 
 
-     
-
-          
-
-          
 
           <!-- Address Section -->
           <div class="form-group">
                <label for="streetAddress">Street Address</label>
-               <input type="text" class="form-control" id="streetAddress" placeholder="Enter your street address">
+               <input type="text" class="form-control" id="streetAddress"
+                    placeholder="Enter your street address">{{form.street_address.errors}}
           </div>
           <div class="form-group">
                <label for="streetAddress2">Street Address Line 2</label>
                <input type="text" class="form-control" id="streetAddress2"
-                    placeholder="Enter additional address information">
+                    placeholder="Enter additional address information">{{form.street_address2.errors}}
           </div>
           <div class="form-row">
                <div class="form-group col-md-6">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" placeholder="Enter your city">
+                    <input type="text" class="form-control" id="city" placeholder="Enter your city">{{form.city.errors}}
                </div>
                <div class="form-group col-md-4">
                     <label for="state">State/Province</label>
-                    <input type="text" class="form-control" id="state" placeholder="Enter your state/province">
+                    <input type="text" class="form-control" id="state"
+                         placeholder="Enter your state/province">{{form.state_province.errors}}
                </div>
                <div class="form-group col-md-2">
                     <label for="zipCode">Zip Code</label>
-                    <input type="text" class="form-control" id="zipCode" placeholder="Enter your zip code">
+                    <input type="text" class="form-control" id="zipCode"
+                         placeholder="Enter your zip code">{{form.zip_code.errors}}
                </div>
           </div>
           <div class="form-group">
                <label for="country">Country</label>
-               <input type="text" class="form-control" id="country" placeholder="Enter your country">
+               <input type="text" class="form-control" id="country"
+                    placeholder="Enter your country">{{form.country.errors}}
           </div>
 
           <!-- Contact Information Section -->
           <div class="form-row">
                <div class="form-group col-md-6">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    <input type="email" class="form-control" id="email"
+                         placeholder="Enter your email">{{form.email.errors}}
                </div>
-               
+
                <div class="form-group col-md-6">
                     <label for="contactNumber">Contact Number</label>
                     <input type="tel" class="form-control" id="contactNumber"
-                         placeholder="Enter your contact number">
+                         placeholder="Enter your contact number">{{form.contact.errors}}
                </div>
           </div>
 
@@ -84,8 +93,7 @@
           <div class="form-group">
                <label for="paymentMethod">Select Payment Method:</label>
                <select class="form-control" id="paymentMethod" name="paymentMethod">
-                    <option value="online">Online</option>
-                    <option value="cas">Case</option>
+                    <option value="{{form.billing_address}}"></option>
                </select>
           </div>
 
@@ -94,7 +102,7 @@
           <!-- Date of Signature Section -->
           <div class="form-group">
                <label for="dateOfSignature">Date of Signature</label>
-               <input type="date" class="form-control" id="dateOfSignature">
+               <input type="date" class="form-control" id="dateOfSignature">{{form.date_of_signature.errors}}
           </div>
 
           <!-- Emergency Contacts Section -->
@@ -102,12 +110,12 @@
                <div class="form-group col-md-6">
                     <label for="emergencyContact1">Emergency Contact 1</label>
                     <input type="text" class="form-control" id="emergencyContact1"
-                         placeholder="Enter emergency contact number">
+                         placeholder="Enter emergency contact number">{{form.emergency_contact.errors}}
                </div>
                <div class="form-group col-md-6">
                     <label for="emergencyContact2">Emergency Contact 2</label>
                     <input type="text" class="form-control" id="emergencyContact2"
-                         placeholder="Enter emergency contact number">
+                         placeholder="Enter emergency contact number">{{form.emergency_contact2.errors}}
                </div>
           </div>
 
@@ -116,52 +124,9 @@
                <h5>Service Category</h5>
                <div class="form-row">
                     <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label"> Construction and Installation</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label"> Maintenance and Cleaning</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label"> Repairs</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label"> Equipment Installation</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label"> Water Treatment</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label"> Renovation</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label"> Safety Measures</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label">Landscaping and Design</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label">Inspections</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label">Training and Certification</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label">Emergency Services</label>
-                    </div>
-                    <div class="form-check col-md-3">
-                         <input class="form-check-input" type="checkbox" value="">
-                         <label class="form-check-label">Consultation and Design</label>
+                         {% for service_category in service_categorys %}
+                         <input class="form-check-input" type="checkbox" value="">{{service_category.name}}
+                         {% endfor %}
                     </div>
                </div>
 

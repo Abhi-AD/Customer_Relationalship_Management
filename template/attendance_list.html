@@ -7,7 +7,6 @@
 <!-- Attendance -->
 <div class="container mt-5">
      <h2>Attendance Table</h2>
-     {% for attendance in attendance_list %}
      <table class="table table-bordered">
           <thead>
                <tr>
@@ -15,20 +14,23 @@
                     <th scope="col">Student Name</th>
                     <th scope="col">Status</th>
                     <th scope="col">Count</th>
+                    <th scope="col">Profile</th>
                </tr>
           </thead>
           <tbody>
+               {% for attendance in attendance_list %}
                <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{forloop.counter}}</th>
                     <td>{{ attendance.user }}</td>
                     <td><input type="checkbox">{{ attendance.is_present }}</td>
                     <td>{{ attendance.attendance_count }}</td>
+                    <td><img src="{{attendance.images.url}}"
+                              alt="Image 1" class="img-thumbnail" style="max-width: 60px;"></td>
                </tr>
+               {% endfor %}
                <!-- Add more rows as needed -->
           </tbody>
      </table>
-     {% endfor %}
-
 </div>
 
 

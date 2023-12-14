@@ -40,6 +40,7 @@ class AddMember(models.Model):
     ]
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    images = models.ImageField(upload_to="Addmember/%Y/%m/%d", blank=False)
     street_address = models.CharField(max_length=255, blank=True, null=True)
     street_address2 = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
@@ -52,7 +53,9 @@ class AddMember(models.Model):
     )
     billing_address = models.CharField(max_length=20, choices=STATUS_PAYMENT)
     date_of_signature = models.DateTimeField(default=timezone.now)
-    emergency_contact = models.CharField(max_length=10)
+    contact = models.CharField(max_length=10)
+    emergency_contact = models.CharField(max_length=10,blank=True, null=True)
+    emergency_contact2 = models.CharField(max_length=10,blank=True, null=True)
     service_category = models.ManyToManyField(Service_Category)
     sub_category = models.ManyToManyField(Sub_Category)
 
@@ -76,7 +79,8 @@ class User_Subscription(models.Model):
 
 
 class Attendance(models.Model):
-    user = models.ForeignKey(DisplayProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(AddMember, on_delete=models.CASCADE)
+    images = models.ImageField(upload_to="Attendance/%Y/%m/%d", blank=False)
     date = models.DateField()
     is_present = models.BooleanField(default=False)
     attendance_count = models.IntegerField(default=0)
