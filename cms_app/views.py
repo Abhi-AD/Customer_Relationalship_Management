@@ -68,9 +68,17 @@ class AddMemberView(View):
         form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('home'))
+            messages.success(
+                request, "Successfully submitted your query. We will add you soon "
+            )
+            return redirect("add_member")
         else:
-            return render(request, self.template_name, {'form': form})
+            messages.error(request, "Cannot submit your data. ")
+            return render(
+                request,
+                self.template_name,
+                {"form": form},
+            )
         
 
 
@@ -186,8 +194,28 @@ class InventoryCreateView(CreateView):
     success_url = "/success/"  # Redirect to success page after form submission
 
 
-class InventoryBalanceCreateView(CreateView):
-    model = InventoryBalance
+
+class InventoryBalanceCreateView(View):
+    template_name = 'inventorybalance_form.html'
     form_class = InventoryBalanceForm
-    template_name = "inventorybalance_form.html"
-    success_url = "/success/"  # Redirect to success page after form submission
+    
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Successfully submitted your query. We will add you soon "
+            )
+            return redirect("add_member")
+        else:
+            messages.error(request, "Cannot submit your data. ")
+            return render(
+                request,
+                self.template_name,
+                {"form": form},
+            )
+        

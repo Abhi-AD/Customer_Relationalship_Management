@@ -5,45 +5,31 @@
 <div class="container mt-5">
      <div class="row justify-content-center">
           <div class="col-md-10">
-               <h2 class="mb-4">Inventory Form</h2>
-               <form>
-                    <div class="form-group">
-                         <label for="itemName">Item Name</label>
-                         <input type="text" class="form-control" id="itemName" placeholder="Enter item name">
-                    </div>
+               {% if messages %}
+               {% for message in messages %}
+               <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    {{message}}
 
-                    <div class="form-group">
-                         <label for="itemDescription">Item Description</label>
-                         <textarea class="form-control" id="itemDescription" rows="3"
-                              placeholder="Enter item description"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                         <label for="itemQuantity">Item Quantity</label>
-                         <input type="number" class="form-control" id="itemQuantity" placeholder="Enter item quantity">
-                    </div>
-
-                    <div class="form-group">
-                         <label for="itemPrice">Item Price</label>
-                         <input type="text" class="form-control" id="itemPrice" placeholder="Enter item price">
-                    </div>
-
-                    <div class="form-group">
-                         <label for="itemCategory">Item Category</label>
-                         <select class="form-control" id="itemCategory">
-                              <option value="electronics">Electronics</option>
-                              <option value="clothing">Clothing</option>
-                              <option value="books">Books</option>
-                              <!-- Add more categories as needed -->
-                         </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {% if form.errors and form.non_field_errors %}
+                    {{form.non_field_errors}}
+                    {% endif %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               {% endfor %}
+               {% endif %}
+               <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h2>Inventory Management Form</h2>
+                    {{ form.as_p }}
+                    <button type="submit">Submit</button>
+          
                </form>
           </div>
           {% include "payment_navbar.html" %}
      </div>
-</div>
+</div>    
 
 
 {% endblock content %}
