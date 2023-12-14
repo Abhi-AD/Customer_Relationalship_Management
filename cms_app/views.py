@@ -60,12 +60,6 @@ class AddMemberView(View):
     template_name = 'add_member.html'
     form_class = RegistrationForm
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["service_categorys"] = Service_Category.objects.all()
-        context["sub_categorys"] = Sub_Category.objects.all()
-        return context
-
     def get(self, request):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
