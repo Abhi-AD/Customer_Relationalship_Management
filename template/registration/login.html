@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- sign in form -->
+
+<div class="row">
+  <div class="col-lg-5 m-auto">
+    <div class="card mt-5 bg-secondary ">
+      <div class="card-title text-center mt-3">
+        <img src="{% static 'img/admin_login.png' %}" alt="" width="150" height="150">
+      </div>
+      <div class="card-body">
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-user fa-1x"></i>
+              </span>
+            </div>
+            <input type="text" name="username" class="form-control py-3" placeholder="Enter a username">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-lock fa-1x"></i>
+              </span>
+            </div>
+            <input type="password" name="password" class="form-control py-3" placeholder="Enter a password">
+          </div>
+          <input type="submit" name="Login" class="btn btn-success px-5">
+          <a href="{% url 'home' %}" class=" btn btn-primary  mb-2 position-absolute top-5 end-0">Go to home</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

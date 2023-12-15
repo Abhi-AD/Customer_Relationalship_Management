@@ -131,3 +131,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # # #  posts image slow
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+# login logout
+
+LOGIN_REDIRECT_URL = "/admin"
+LOGOUT_REDIRECT_URL = "/"

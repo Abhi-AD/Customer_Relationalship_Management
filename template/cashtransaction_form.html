@@ -5,21 +5,25 @@
      <div class="row justify-content-center">
           <div class="col-md-10">
                <h2>Create Cash Transaction</h2>
-               <form method="post">
+               {% if messages %}
+               {% for message in messages %}
+               <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    {{message}}
+
+                    {% if form.errors and form.non_field_errors %}
+                    {{form.non_field_errors}}
+                    {% endif %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               {% endfor %}
+               {% endif %}
+               <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {% for field in form %}
-                    <div class="form-group">
-                         {{ field.label_tag }}
-                         {{ field }}
-                         {% if field.help_text %}
-                         <small class="form-text text-muted">{{ field.help_text }}</small>
-                         {% endif %}
-                         {% if field.errors %}
-                         <div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>
-                         {% endif %}
-                    </div>
-                    {% endfor %}
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Submit</button>
+
                </form>
           </div>
           {% include "payment_navbar.html" %}

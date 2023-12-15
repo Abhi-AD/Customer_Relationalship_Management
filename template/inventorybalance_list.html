@@ -9,14 +9,14 @@
 
                <div class="row">
                     {% for inventory in object_list %}
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-2 mb-3">
                          <div class="card">
-                              <img src="{{inventory.images.url}}" class="card-img-top" alt="{{inventory.inventory}}">
-                              <div class="card-body">
-                                   <h5 class="card-title">{{inventory.inventory}}</h5>
-                                   <p class="card-text">{{inventory.balance_date}}</p>
-                                   <p class="card-text text-muted">{{inventory.quantity_on_hand}}</p>
-                              </div>
+                              <img src="{{inventory.images.url}}" alt="{{ attendance.user }}" class="img-thumbnail"
+                                   style="max-width: 100px;">
+                              <h5 class="card-title">{{inventory.inventory}}</h5>
+                              <p class="card-text">{{inventory.balance_date}}</p>
+                              <p class="card-text text-muted">{{inventory.quantity_on_hand}}</p>
+
                          </div>
                     </div>
                     {% endfor %}

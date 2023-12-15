@@ -25,7 +25,7 @@
                     <td><input type="checkbox">{{ attendance.is_present }}</td>
                     <td>{{ attendance.attendance_count }}</td>
                     <td><img src="{{attendance.images.url}}"
-                              alt="Image 1" class="img-thumbnail" style="max-width: 60px;"></td>
+                              alt="{{ attendance.user }}" class="img-thumbnail" style="max-width: 60px;"></td>
                </tr>
                {% endfor %}
                <!-- Add more rows as needed -->
