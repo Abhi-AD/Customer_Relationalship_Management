@@ -22,9 +22,6 @@
                     <a class="nav-link {% if request.resolver_match.url_name == 'cashtransaction_form' %} active{% endif %}" href="{% url 'cashtransaction_form' %}">Payment</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link {% if request.resolver_match.url_name == 'add_member' %} active{% endif %}" href="{% url 'add_member' %}">Add member</a>
-               </li>
-               <li class="nav-item">
                     <a class="nav-link {% if request.resolver_match.url_name == 'signin' %} active{% endif %}" href="{% url 'signin' %}"> sign In</a>
                </li>
                <li class="nav-item ">

@@ -135,5 +135,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # login logout
 
-LOGIN_REDIRECT_URL = "/admin"
+LOGIN_REDIRECT_URL = "/add_member"
 LOGOUT_REDIRECT_URL = "/"
