@@ -6,6 +6,10 @@
 
 <!-- Attendance -->
 <div class="container mt-5">
+     <a class="nav-link  {% if request.resolver_match.url_name == 'attendance' %} bg-secondary active{% endif %}"
+          href="{% url 'attendance' %}">Attendance</a>
+     <a class="nav-link  {% if request.resolver_match.url_name == 'attendance_register' %} bg-secondary active{% endif %}"
+          href="{% url 'attendance_register' %}">Attendance register</a>
      <h2>Attendance Table</h2>
      <table class="table table-bordered">
           <thead>
@@ -24,8 +28,8 @@
                     <td>{{ attendance.user }}</td>
                     <td><input type="checkbox">{{ attendance.is_present }}</td>
                     <td>{{ attendance.attendance_count }}</td>
-                    <td><img src="{{attendance.images.url}}"
-                              alt="{{ attendance.user }}" class="img-thumbnail" style="max-width: 60px;"></td>
+                    <td><img src="{{attendance.images.url}}" alt="{{ attendance.user }}" class="img-thumbnail"
+                              style="max-width: 60px;"></td>
                </tr>
                {% endfor %}
                <!-- Add more rows as needed -->

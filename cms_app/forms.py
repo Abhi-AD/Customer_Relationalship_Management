@@ -1,5 +1,11 @@
 from django import forms
-from cms_app.models import Contact, CashTransaction, Inventory, InventoryBalance,AddMember
+from cms_app.models import Contact, CashTransaction, Inventory, InventoryBalance,AddMember,Attendance
+
+class AttendanceRegister(forms.ModelForm):
+    class Meta:
+        model = Attendance
+        fields = "__all__"
+
 
 
 class ContactForm(forms.ModelForm):

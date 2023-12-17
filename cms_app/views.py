@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView, LoginView
 from django.views import View
 from django.contrib import messages
-from django.db.models import Sum
 
 from django.db.models import Count
 from django.utils import timezone
@@ -19,6 +18,7 @@ from cms_app.forms import (
     InventoryForm,
     InventoryBalanceForm,
     RegistrationForm,
+    AttendanceRegister,
 )
 
 # create the view
@@ -35,6 +35,29 @@ class HomeView(TemplateView):
 class SignInView(TemplateView):
     template_name = "sign_in.html"
 
+
+
+
+# class LogInView(View):
+#     template_name = "log_in.html"
+
+#     def get(self, request):
+#         return render(request, self.template_name)
+
+#     def post(self, request):
+#         error = ""
+#         username = request.POST.get("username")
+#         password = request.POST.get("password")
+
+#         user = authenticate(request, username=username, password=password)
+
+#         if user is not None and user.is_staff:
+#             login(request, user)
+#             error = "no"
+#         else:
+#             error = "yes"
+
+#         return render(request, self.template_name, {"error": error})
 
 
 
@@ -57,27 +80,8 @@ class CashTransactionListView(ListView):
     model = CashTransaction
     template_name = "cashtransaction_list.html"
 
-    def get_queryset(self):
+    def get_queryser(self):
         return CashTransaction.objects.all()
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        cash_in_transactions = CashTransaction.objects.filter(transaction_type='CASH_IN')
-        cash_out_transactions = CashTransaction.objects.filter(transaction_type='CASH_OUT')
-        cash_in_sum = cash_in_transactions.aggregate(Sum('amount'))['amount__sum'] or 0
-        cash_out_sum = cash_out_transactions.aggregate(Sum('amount'))['amount__sum'] or 0
-        cash_difference = cash_in_sum - cash_out_sum
-
-        context.update({
-            'cash_in_transactions': cash_in_transactions,
-            'cash_out_transactions': cash_out_transactions,
-            'cash_in_sum': cash_in_sum,
-            'cash_out_sum': cash_out_sum,
-            'cash_difference': cash_difference,
-        })
-
-        return context
 
 class InventoryListView(ListView):
     model = Inventory
@@ -215,3 +219,27 @@ class InventoryBalanceCreateView(CreateView):
             )
       
 
+class Attendance_register(CreateView):
+    template_name = 'attendance_register.html'
+    form_class = AttendanceRegister
+    
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Successfully submitted your query. We will transaction you soon "
+            )
+            return redirect("attendance")
+        else:
+            messages.error(request, "Cannot submit your data. ")
+            return render(
+                request,
+                self.template_name,
+                {"form": form},
+            )
+  
