@@ -1,11 +1,23 @@
 from django import forms
-from cms_app.models import Contact, CashTransaction, Inventory, InventoryBalance,AddMember,Attendance
+from cms_app.models import (
+    Contact,
+    CashTransaction,
+    Inventory,
+    InventoryBalance,
+    AddMember,
+    Attendance,
+    Plan_Subscription,
+)
+class PlanForm(forms.ModelForm):
+    class Meta:
+        model = Plan_Subscription
+        fields = "__all__"
+    
 
 class AttendanceRegister(forms.ModelForm):
     class Meta:
         model = Attendance
         fields = "__all__"
-
 
 
 class ContactForm(forms.ModelForm):

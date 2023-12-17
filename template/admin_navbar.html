@@ -18,6 +18,10 @@
                          <a class="nav-link  {% if request.resolver_match.url_name == 'inventory_balance' %} bg-secondary active{% endif %}"
                               href="{% url 'inventory_balance' %}">Inventory Balance</a>
                     </li>
+                    <li class="nav-item">
+                         <a class="nav-link  {% if request.resolver_match.url_name == 'price' %} bg-secondary active{% endif %}"
+                              href="{% url 'price' %}">Price add</a>
+                    </li>
 
                     <li class="nav-item ">
                          <a class="nav-link " href="{% url 'logout' %}"> LogOut</a>

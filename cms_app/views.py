@@ -19,6 +19,7 @@ from cms_app.forms import (
     InventoryBalanceForm,
     RegistrationForm,
     AttendanceRegister,
+    PlanForm,
 )
 
 # create the view
@@ -243,3 +244,27 @@ class Attendance_register(CreateView):
                 {"form": form},
             )
   
+class PlanView(CreateView):
+    template_name = 'price_register.html'
+    form_class = PlanForm
+    
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Successfully submitted your query. We will transaction you soon "
+            )
+            return redirect("plan")
+        else:
+            messages.error(request, "Cannot submit your data. ")
+            return render(
+                request,
+                self.template_name,
+                {"form": form},
+            )
+ 

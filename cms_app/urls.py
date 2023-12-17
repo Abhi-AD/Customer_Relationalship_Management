@@ -12,6 +12,7 @@ from cms_app.views import (
     InventoryBalanceCreateView,
     AddMemberView,
     Attendance_register,
+    PlanView,
 )
 
 
@@ -31,4 +32,6 @@ urlpatterns = [
     path("inventory_create/", InventoryCreateView.as_view(), name="inventory_create"),
     path("inventory_balance/", InventoryBalanceListView.as_view(), name="inventory_balance"),
     path("inventory_balance_create/", InventoryBalanceCreateView.as_view(), name="inventory_balance_create"),
+    
+    path("price/" , PlanView.as_view(), name="price"),
 ]
