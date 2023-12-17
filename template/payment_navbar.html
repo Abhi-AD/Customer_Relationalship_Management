@@ -6,26 +6,14 @@
                          <a class="nav-link   {% if request.resolver_match.url_name == 'cashtransaction_form' %} bg-secondary active{% endif %}"
                               href="{% url 'cashtransaction_form'%}">Transaction Form</a>
                     </li>
-                    <li class="nav-item">
-                         <a class="nav-link  {% if request.resolver_match.url_name == 'cashtransaction_list' %} bg-secondary active{% endif %}"
-                              href="{% url 'cashtransaction_list' %}">Transaction History</a>
-                    </li>
                
                     <li class="nav-item">
                          <a class="nav-link  {% if request.resolver_match.url_name == 'inventory_create' %} bg-secondary active{% endif %}"
                               href="{% url 'inventory_create' %}">Inventory Create</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link  {% if request.resolver_match.url_name == 'inventory_list' %} bg-secondary active{% endif %}"
-                              href="{% url 'inventory_list' %}">Inventory History</a>
-                    </li>
-                    <li class="nav-item">
                          <a class="nav-link  {% if request.resolver_match.url_name == 'inventory_balance_create' %} bg-secondary active{% endif %}"
                               href="{% url 'inventory_balance_create' %}">Inventory Balance Create</a>
-                    </li>
-                    <li class="nav-item">
-                         <a class="nav-link  {% if request.resolver_match.url_name == 'inventory_balance' %} bg-secondary active{% endif %}"
-                              href="{% url 'inventory_balance' %}">Inventory Balance</a>
                     </li>
                     <!-- Add more menu items as needed -->
                </ul>

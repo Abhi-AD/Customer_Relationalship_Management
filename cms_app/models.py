@@ -101,7 +101,7 @@ class CashTransaction(models.Model):
         ("CASH_IN", "Cash In"),
         ("CASH_OUT", "Cash Out"),
     ]
-    user = models.ForeignKey(DisplayProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(AddMember, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     transaction_type = models.CharField(max_length=8, choices=transaction_type_choices)
     date = models.DateField(default=timezone.now)
@@ -113,7 +113,7 @@ class CashTransaction(models.Model):
 
 
 class Inventory(models.Model):
-    name = models.ForeignKey(DisplayProfile, on_delete=models.CASCADE)
+    name = models.ForeignKey(AddMember, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField(default=timezone.now)
@@ -123,7 +123,7 @@ class Inventory(models.Model):
 
 
 class InventoryBalance(models.Model):
-    inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
+    inventory = models.CharField(max_length = 100)
     balance_date = models.DateField(default=timezone.now)
     quantity_on_hand = models.PositiveIntegerField()
     images = models.ImageField(upload_to="Inventory_balance/%Y/%m/%d", blank=False)

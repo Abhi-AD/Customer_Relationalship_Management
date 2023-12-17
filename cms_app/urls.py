@@ -16,6 +16,7 @@ from cms_app.views import (
 
 urlpatterns = [
     path("", views.HomeView.as_view(), name="home"),
+    # path("", cash, name="home"),
     path("plan/", views.Plan.as_view(), name="plan"),
     path("signin/", views.SignInView.as_view(), name="signin"),
     path("subscription/", SubscriptionDetailView.as_view(), name="subscription_detail"),

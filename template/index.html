@@ -2,115 +2,37 @@
 {% load static %}
 {% block content %}
 
-     
-
-     <!-- Cost of the membership -->
-     <div class="container mt-5">
-          <h2>Membership Costs</h2>
-          <table class="table table-bordered">
-               <thead>
-                    <tr>
-                         <th scope="col">Membership Type</th>
-                         <th scope="col">Cost</th>
-                    </tr>
-               </thead>
-               <tbody>
-                    <tr>
-                         <td>Basic Membership</td>
-                         <td>$50</td>
-                    </tr>
-                    <tr>
-                         <td>Standard Membership</td>
-                         <td>$100</td>
-                    </tr>
-                    <tr>
-                         <td>Premium Membership</td>
-                         <td>$150</td>
-                    </tr>
-                    <!-- Add more rows for additional membership types -->
-               </tbody>
-          </table>
-
-     </div>
 
 
+<!-- Cost of the membership -->
+<div class="container mt-5">
+     <h2>Membership Costs</h2>
+     <table class="table table-bordered">
+          <thead>
+               <tr>
+                    <th scope="col">Membership Type</th>
+                    <th scope="col">Cost</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr>
+                    <td>Basic Membership</td>
+                    <td>$50</td>
+               </tr>
+               <tr>
+                    <td>Standard Membership</td>
+                    <td>$100</td>
+               </tr>
+               <tr>
+                    <td>Premium Membership</td>
+                    <td>$150</td>
+               </tr>
+               <!-- Add more rows for additional membership types -->
+          </tbody>
+     </table>
 
-     <!-- case in form -->
-     <div class="form-row">
-          <!-- Cash In Card -->
-          <div class="col-md-3">
-               <div class="card">
-                    <div class="card-body">
-                         <h2 class="card-title">Cash In</h2>
-                         <form>
-                              <div class="form-group">
-                                   <label for="cashInAmount">Amount</label>
-                                   <input type="text" class="form-control" id="cashInAmount" placeholder="Enter amount">
-                              </div>
-                              <button type="button" class="btn btn-success">Add Cash In</button>
-                         </form>
-                    </div>
-               </div>
-          </div>
+</div>
 
-          <!-- Cash Out Card -->
-          <div class="col-md-3">
-               <div class="card">
-                    <div class="card-body">
-                         <h2 class="card-title">Cash Out</h2>
-                         <form>
-                              <div class="form-group">
-                                   <label for="cashOutAmount">Amount</label>
-                                   <input type="text" class="form-control" id="cashOutAmount"
-                                        placeholder="Enter amount">
-                              </div>
-                              <button type="button" class="btn btn-danger">Add Cash Out</button>
-                         </form>
-                    </div>
-               </div>
-          </div>
-
-          <!-- Inventory Card -->
-          <div class="col-md-3">
-               <div class="card">
-                    <div class="card-body">
-                         <h2 class="card-title">Inventory</h2>
-                         <form>
-                              <div class="form-group">
-                                   <label for="inventoryItem">Item</label>
-                                   <input type="text" class="form-control" id="inventoryItem" placeholder="Enter item">
-                              </div>
-                              <div class="form-group">
-                                   <label for="inventoryQuantity">Quantity</label>
-                                   <input type="text" class="form-control" id="inventoryQuantity"
-                                        placeholder="Enter quantity">
-                              </div>
-                              <button type="button" class="btn btn-primary">Add to Inventory</button>
-                         </form>
-                    </div>
-               </div>
-          </div>
-
-          <!-- Balance Card -->
-          <div class="col-md-3">
-               <div class="card">
-                    <div class="card-body">
-                         <h2 class="card-title">Balance</h2>
-                         <div class="row">
-                              <div class="col-md-4">
-                                   <p>Cash In Balance: $1000</p>
-                              </div>
-                              <div class="col-md-4">
-                                   <p>Cash Out Balance: $500</p>
-                              </div>
-                              <div class="col-md-4">
-                                   <p>Inventory Balance: 50 items</p>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
-     </div>
 
 
 

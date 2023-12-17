@@ -3,7 +3,20 @@
 {% block content %}
 <div class="container mt-5">
      <div class="row justify-content-center">
-          <div class="col-md-10">
+          <div class="col-md-3">
+               <div class="row">
+                    <div class="col-md-4">
+                         <p>Cash In Balance: <br>{{ cash_in_sum }}</p>
+                    </div>
+                    <div class="col-md-4">
+                         <p>Cash Out Balance: <br>{{ cash_out_sum }}</p>
+                    </div>
+                    <div class="col-md-4">
+                         <p>Total Balance:<br>{{cash_difference}}</p>
+                    </div>
+               </div>
+          </div>
+          <div class="col-md-7">
                <h2>Cash Transactions</h2>
                <table class="table table-striped">
                     <thead>
@@ -29,7 +42,8 @@
                     {% endfor %}
                </table>
           </div>
-          {% include "payment_navbar.html" %}
+          {% include "admin_navbar.html" %}
+
      </div>
 </div>
 {% endblock content %}

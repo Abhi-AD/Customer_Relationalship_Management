@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
 <div class="container mt-5">
      <div class="row justify-content-center">
           <div class="col-md-10">
@@ -9,20 +8,23 @@
 
                <div class="row">
                     {% for inventory in object_list %}
-                    <div class="col-md-2 mb-3">
-                         <div class="card">
-                              <img src="{{inventory.images.url}}" alt="{{ attendance.user }}" class="img-thumbnail"
-                                   style="max-width: 100px;">
-                              <h5 class="card-title">{{inventory.inventory}}</h5>
-                              <p class="card-text">{{inventory.balance_date}}</p>
-                              <p class="card-text text-muted">{{inventory.quantity_on_hand}}</p>
-
+                    <div class="col-md-3 mb-3">
+                         <div class="card" style="width: 200px;">
+                              <img src="{{inventory.images.url}}" class="card-img-top" alt="Image 1">
+                              <div class="card-body">
+                                   <h5 class="card-title">Name:{{inventory.inventory}}</h5>
+                                   <p class="card-text">Date: {{inventory.balance_date | date:"D d M Y"}}</p>
+                                   <p class="card-text">Quantity :{{inventory.quantity_on_hand}} items</p>
+                              </div>
                          </div>
                     </div>
                     {% endfor %}
                </div>
           </div>
-          {% include "payment_navbar.html" %}
+
+
+          {% include "admin_navbar.html" %}
+
      </div>
 </div>
 

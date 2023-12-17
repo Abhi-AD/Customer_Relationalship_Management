@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView, LoginView
 from django.views import View
 from django.contrib import messages
+from django.db.models import Sum
 
 from django.db.models import Count
 from django.utils import timezone
@@ -37,29 +38,6 @@ class SignInView(TemplateView):
 
 
 
-# class LogInView(View):
-#     template_name = "log_in.html"
-
-#     def get(self, request):
-#         return render(request, self.template_name)
-
-#     def post(self, request):
-#         error = ""
-#         username = request.POST.get("username")
-#         password = request.POST.get("password")
-
-#         user = authenticate(request, username=username, password=password)
-
-#         if user is not None and user.is_staff:
-#             login(request, user)
-#             error = "no"
-#         else:
-#             error = "yes"
-
-#         return render(request, self.template_name, {"error": error})
-
-
-
 
 # list view
 class Plan(ListView):
@@ -79,8 +57,27 @@ class CashTransactionListView(ListView):
     model = CashTransaction
     template_name = "cashtransaction_list.html"
 
-    def get_queryser(self):
+    def get_queryset(self):
         return CashTransaction.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        cash_in_transactions = CashTransaction.objects.filter(transaction_type='CASH_IN')
+        cash_out_transactions = CashTransaction.objects.filter(transaction_type='CASH_OUT')
+        cash_in_sum = cash_in_transactions.aggregate(Sum('amount'))['amount__sum'] or 0
+        cash_out_sum = cash_out_transactions.aggregate(Sum('amount'))['amount__sum'] or 0
+        cash_difference = cash_in_sum - cash_out_sum
+
+        context.update({
+            'cash_in_transactions': cash_in_transactions,
+            'cash_out_transactions': cash_out_transactions,
+            'cash_in_sum': cash_in_sum,
+            'cash_out_sum': cash_out_sum,
+            'cash_difference': cash_difference,
+        })
+
+        return context
 
 class InventoryListView(ListView):
     model = Inventory
@@ -217,3 +214,4 @@ class InventoryBalanceCreateView(CreateView):
                 {"form": form},
             )
       
+
